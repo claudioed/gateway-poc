@@ -1,0 +1,29 @@
+# Basic configuration for Kong without the ingress controller, using the Postgres subchart
+# This installation does not create an Ingress or LoadBalancer Service for
+# the Admin API. It requires port-forwards to access without further
+# configuration to add them, e.g.:
+# kubectl port-forward deploy/your-deployment-kong 8001:8001
+
+image:
+  repository: claudioed/kong-oidc
+  tag: "2.6.0"
+
+env:
+  prefix: /kong_prefix/
+  database: "off"
+  plugins: bundled,oidc
+
+admin:
+  enabled: false
+  http:
+    enabled: true
+    servicePort: 8001
+    containerPort: 8001
+
+ingressController:
+  enabled: true
+  installCRDs: false
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8100"
