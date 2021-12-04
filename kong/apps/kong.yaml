@@ -8,8 +8,8 @@ metadata:
 spec:
   project: default
   source:
-    path: kong
-    repoURL: https://github.com/claudioed/bets-helm.git
+    path: kong/charts/kong
+    repoURL: https://github.com/claudioed/gateway-poc.git
     targetRevision: HEAD
     helm:
       valueFiles:
