@@ -1,0 +1,12 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: jaeger-bets
+config:
+  http_endpoint: http://zipkin.istio-system:9411/api/v2/spans
+  sample_ratio: 0.001
+  include_credential: true
+  traceid_byte_count: 16
+  header_type: preserve
+  default_header_type: b3
+plugin: zipkin
